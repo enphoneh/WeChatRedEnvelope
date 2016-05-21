@@ -1,27 +1,17 @@
 package com.pinglantingyu.rob;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 
 import android.accessibilityservice.AccessibilityService;
 import android.annotation.SuppressLint;
-import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.PendingIntent.CanceledException;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.os.PowerManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.RemoteViews;
 
 public class RobMoney extends AccessibilityService {
 
@@ -43,7 +33,7 @@ public class RobMoney extends AccessibilityService {
 				for (CharSequence text : texts) {
 					String content = text.toString();
 					Log.i("robmoney", "text:"+content);
-				  if (content.contains("[Î¢ĞÅºì°ü]")) {
+				  if (content.contains("[å¾®ä¿¡çº¢åŒ…]")) {
 						if (event.getParcelableData() != null
 								&& 
 							event.getParcelableData() instanceof Notification) {
@@ -75,16 +65,16 @@ public class RobMoney extends AccessibilityService {
 		
 			if (className.equals("com.tencent.mm.ui.LauncherUI")&&(!mLuckyClicked)) {
 
-				getPacket();// ÁìÈ¡ºì°ü
+				getPacket();// é¢†å–çº¢åŒ…
 			} else if (className
 					.equals("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyReceiveUI")) {
 				mLuckyClicked = true;
 				openPacket();
-			// ´ò¿ªºì°ü
+			// æ‰“å¼€çº¢åŒ…
 			}
 			else if(className.equals("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyDetailUI")){
 				mLuckyClicked = true;
-			//	backLauncher();//·µ»ØÖ÷Ò³
+			//	backLauncher();//è¿”å›ä¸»é¡µ
 			}
 			break;
 		}
@@ -100,7 +90,7 @@ public class RobMoney extends AccessibilityService {
 				n.performAction(AccessibilityNodeInfo.ACTION_CLICK);
 			}
 			List<AccessibilityNodeInfo> list_old = nodeInfo.
-					findAccessibilityNodeInfosByText("²ğºì°ü");
+					findAccessibilityNodeInfosByText("æ‹†çº¢åŒ…");
 				for (AccessibilityNodeInfo n : list_old) {
 					n.performAction(AccessibilityNodeInfo.ACTION_CLICK);
 				}
@@ -113,19 +103,6 @@ public class RobMoney extends AccessibilityService {
 		}
 
 	}
-
-/*	@SuppressLint("NewApi")
-	private void getPacket() {
-		AccessibilityNodeInfo rootNode = getRootInActiveWindow();
-		if (rootNode != null) {
-			List<AccessibilityNodeInfo> nodeInfos = rootNode
-					.findAccessibilityNodeInfosByText("ÁìÈ¡ºì°ü");
-			for (AccessibilityNodeInfo nodeInfo : nodeInfos) {
-				nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-			}
-
-		}
-	}*/
 
 	@SuppressLint("NewApi")
 	private void getPacket() {
@@ -156,12 +133,12 @@ public class RobMoney extends AccessibilityService {
         	
         	if(info.getText() != null){
         		Log.i("robmoney","textinfo "+ info.getText().toString() );
-        		if(info.getText().toString().contains("ÄãÁìÈ¡ÁË"))
+        		if(info.getText().toString().contains("ä½ é¢†å–äº†"))
         		{
         			minfo=null;
         		}
         	
-        		if("ÁìÈ¡ºì°ü".equals(info.getText().toString())){
+        		if("é¢†å–çº¢åŒ…".equals(info.getText().toString())){
         			//Log.i("robmoney","info is "+info.getParent().toString());
         			//Log.i("red", "Click"+",isClick:"+info.isClickable());
         			minfo = info;
@@ -186,7 +163,7 @@ public class RobMoney extends AccessibilityService {
 	}
 	public void backLauncher(){
 		
-		//ÑÓ³ÙÁ½ÃëÌø×ª
+		//å»¶è¿Ÿä¸¤ç§’è·³è½¬
 		new Handler().postDelayed(new Runnable() {
 			
 			@Override
