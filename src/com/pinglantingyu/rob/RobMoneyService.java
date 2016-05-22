@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-public class RobMoney extends AccessibilityService {
+public class RobMoneyService extends AccessibilityService {
 
 	public AccessibilityNodeInfo minfo;
 	private boolean mLuckyClicked;
