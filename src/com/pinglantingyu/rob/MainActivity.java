@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pinglantingyu.rob.UI.RoundImageView;
@@ -19,6 +20,7 @@ public class MainActivity extends Activity {
 
 	private XiuYiXiuView mXiuView = null;
 	private RoundImageView mPhoto = null;
+	private TextView mTextView = null;
 	private final static String TAG = "RobMoneyMain";
 
 	@Override
@@ -40,6 +42,11 @@ public class MainActivity extends Activity {
 		super.onResume();
 		if (isAccessibilitySettingsOn(this)) {
 			mXiuView.start();		//若service开启，则执行动画
+			mTextView.setText(getResources().getString(R.string.Finding));
+		}else{
+			mXiuView.stop();	
+			mXiuView.clearAnimation();
+			mTextView.setText(getResources().getString(R.string.Push));
 		}
 
 	}
@@ -48,6 +55,7 @@ public class MainActivity extends Activity {
 	private void initView() {
 		mXiuView = (XiuYiXiuView) findViewById(R.id.wv);
 		mPhoto = (RoundImageView) findViewById(R.id.my_photo);
+		mTextView = (TextView)findViewById(R.id.tv1);
 		mPhoto.setOnClickListener(new OnClickListener() {
 
 			@Override

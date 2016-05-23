@@ -23,6 +23,17 @@
             imagecontrol:border_inside_color="#bc0978"
             imagecontrol:border_outside_color="#ba3456"
             imagecontrol:border_thickness="1dp" />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/my_photo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="41dp"
+            android:textSize="20sp"
+            android:text="@string/Push" />
+        
     </RelativeLayout>
 
 </LinearLayout>

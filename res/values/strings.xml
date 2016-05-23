@@ -4,5 +4,8 @@
     
      <string name="app_name">金手指</string>
     <string name="accessibility_description">启动微信抢红包服务</string>
+    <string name="Push">点击按钮开启服务</string>
+    <string name="Finding">正在嗅探中</string>
+    
 
 </resources>
